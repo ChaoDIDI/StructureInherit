@@ -43,7 +43,15 @@ this.weight =weight ||5;
       
       <!--新创建的测试属性鸭子-->
       function  ThinDuck(){ Duck.apply(this,['lily','蓝色']);}
-      
+       <!--定义个空白的临时对象,用于对象赋值中间传递使用-->
+      function EmptyDuck(){}
+      //把Duck的原型赋值为EmptyDuck
+      EmptyDuck.prototype = Duck.prototype;
+      var emptyDuck = new EmptyDuck();//实例化一个EmptyDuck对象
+      //实例化的空对象的原型赋值给ThinDuck
+       ThinDuck.prototype = emptyDuck;
+       ThinDuck.prototype .laugh = function(){console.log('嗷嗷叫')}
+       
       <!---->
       
  ```
